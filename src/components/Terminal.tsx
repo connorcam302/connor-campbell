@@ -31,8 +31,8 @@ const Terminal: React.FC = () => {
             <Typewriter
               onInit={(typewriter) => {
                 typewriter
-                .changeDelay(30)
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  .changeDelay(30)
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   // @ts-ignore
                   .pasteString(
                     ' <span style="color: #22c55e;">E:\\</span><br/>'
@@ -59,7 +59,9 @@ const Terminal: React.FC = () => {
                   .pauseFor(2000)
                   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   // @ts-ignore
-                  .pasteString("<span>- <span style='color: #34d399;'>ready</span> started server on 0.0.0.0:3000, url: connorcampbell.dev</span><br/>")
+                  .pasteString(
+                    "<span>- <span style='color: #34d399;'>ready</span> started server on 0.0.0.0:3000, url: connorcampbell.dev</span>"
+                  )
                   .start();
               }}
             />
