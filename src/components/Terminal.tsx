@@ -1,52 +1,22 @@
 import React, { useEffect, useState } from "react";
-
-const terminalLines: string[] = [
-  "E:\\",
-  "λ npx create-next-app@latest connorcampbell",
-  "",
-  "E:\\",
-  "λ cd connorcampbell",
-  "",
-  "E:\\connorcampbell (main -> origin)",
-  "λ npm run dev",
-  "",
-  "> connor-campbell@0.1.0 dev",
-  "> next dev",
-  "",
-  "- ready started server on 0.0.0.0:3000, url: connorcampbell.dev",
-];
+import Typewriter from "typewriter-effect";
 
 const Terminal: React.FC = () => {
-  const [visibleText, setVisibleText] = useState<string[]>([]);
-
-  useEffect(() => {
-    let currentIndex = 0;
-    let currentLineIndex = 0;
-    let currentLine = "";
-
-    const interval = setInterval(() => {
-      if (currentIndex === terminalLines.length) {
-        clearInterval(interval);
-      } else {
-        const line = terminalLines[currentIndex];
-        const lineLength = line.length;
-
-        if (currentLineIndex < lineLength) {
-          currentLine += line[currentLineIndex];
-          currentLineIndex++;
-        } else {
-          setVisibleText((prevVisibleText) => [...prevVisibleText, currentLine]);
-          currentIndex++;
-          currentLineIndex = 0;
-          currentLine = "";
-        }
-      }
-
-      setVisibleText((prevVisibleText) => [...prevVisibleText.slice(0, -1), currentLine]);
-    }, 50); // Adjust the interval duration as needed
-
-    return () => clearInterval(interval);
-  }, []);
+  const [code, setCode] = useState<string>("");
+  const terminalLines: { text: string; instant: boolean }[] = [
+    { text: "E:\\", instant: true },
+    { text: "λ npx create-next-app@latest connorcampbell", instant: false },
+    { text: "E:\\", instant: true },
+    { text: "λ cd connorcampbell", instant: false },
+    { text: "E:\\connorcampbell (main -> origin)", instant: true },
+    { text: "λ npm run dev", instant: false },
+    { text: "> connorcampbell@0.1.0 dev", instant: true },
+    { text: "> next dev", instant: true },
+    {
+      text: "- ready started server on 0.0.0.0:3000, url: connorcampbell.dev",
+      instant: true,
+    },
+  ];
 
   return (
     <div>
@@ -56,14 +26,44 @@ const Terminal: React.FC = () => {
           <div className="mr-2 h-3 w-3 rounded-full bg-yellow-500"></div>
           <div className="mr-2 h-3 w-3 rounded-full bg-green-500"></div>
         </div>
-        <div className="h-72 overflow-y-auto rounded-lg p-2">
-          <span className="text-stone-400">
-            {visibleText.map((line, index) => (
-              <p key={index}>
-                <code>{line}</code>
-              </p>
-            ))}
-          </span>
+        <div className="h-96 overflow-y-auto rounded-lg p-2">
+          <code className="text-stone-400">
+            <Typewriter
+              onInit={(typewriter) => {
+                typewriter
+                .changeDelay(30)
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  .pasteString(
+                    ' <span style="color: #22c55e;">E:\\</span><br/>'
+                  )
+                  .typeString(
+                    "<span>λ npx create-next-app@latest connorcampbell</span><br/><br/>"
+                  )
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  .pasteString('<span style="color: #22c55e;">E:\\</span><br/>')
+                  .typeString("<span>λ cd connorcampbell</span><br/><br/>")
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  .pasteString(
+                    '<span style="color: #22c55e;">E:\\connorcampbell</span> <span style="color: #fde047;">(main → origin)</span><br/>'
+                  )
+                  .typeString("<span>λ npm run dev</span><br/><br/>")
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  .pasteString("<span>- connorcampbell@0.1.0 dev</span><br/>")
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  .pasteString("<span>- next dev</span><br/><br/>")
+                  .pauseFor(2000)
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  .pasteString("<span>- <span style='color: #34d399;'>ready</span> started server on 0.0.0.0:3000, url: connorcampbell.dev</span><br/>")
+                  .start();
+              }}
+            />
+          </code>
         </div>
       </div>
     </div>
