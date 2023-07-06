@@ -12,12 +12,15 @@ export default function Home() {
       <main className="text-zinc-200">
         <div className="flex h-screen bg-zinc-800">
           <div className="m-auto flex flex-col">
-            <div className="flex shrink  items-center gap-8">
+            <div className="m-6 flex shrink  items-center gap-8">
               <div className="">
-                <h1 className="text-4xl font-bold">
+                <h1 className="text-4xl font-bold leading-8">
                   Connor <span className="text-indigo-400">Campbell</span>
                 </h1>
-                <h2 className="text-2xl font-bold">Full Stack Developer</h2>
+                <br/>
+                <h2 className="text-2xl font-bold leading-5">
+                  Full Stack Developer
+                </h2>
               </div>
               <img
                 className="w-32 rounded-full md:w-64"

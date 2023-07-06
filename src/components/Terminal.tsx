@@ -20,14 +20,14 @@ const Terminal: React.FC = () => {
 
   return (
     <div>
-      <div className="rounded-3xl bg-stone-900 p-6">
+      <div className="rounded-3xl bg-stone-900 p-6 m-4">
         <div className="mb-4 flex items-center">
           <div className="mr-2 h-3 w-3 rounded-full bg-red-500"></div>
           <div className="mr-2 h-3 w-3 rounded-full bg-yellow-500"></div>
           <div className="mr-2 h-3 w-3 rounded-full bg-green-500"></div>
         </div>
-        <div className="h-96 overflow-y-auto rounded-lg p-2">
-          <code className="text-stone-400">
+        <div className="h-64 overflow-y-auto rounded-lg p-2">
+          <code className="text-xs text-stone-400">
             <Typewriter
               onInit={(typewriter) => {
                 typewriter
