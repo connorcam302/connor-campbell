@@ -1,5 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
+import Terminal from "../components/Terminal";
 
 export default function Home() {
   return (
@@ -11,17 +13,24 @@ export default function Home() {
       </Head>
       <main className="text-zinc-200">
         <div className="flex h-screen bg-zinc-800">
-          <div className="m-auto">
+          <div className="m-auto flex flex-col">
+            <div className="flex items-center gap-8">
+              <div className="">
+                <h1 className="text-5xl font-bold">
+                  Connor <span className="text-indigo-400">Campbell</span>
+                </h1>
+                <h2 className="text-3xl font-bold">Full Stack Developer</h2>
+              </div>
+              <img
+                className="w-64 rounded-full"
+                src="/hastings.jpg"
+                alt="Picture of the author"
+              />
+            </div>
             <div>
-              <h1 className="text-5xl font-bold">
-                Connor <span className="text-indigo-400">Campbell</span>
-              </h1>
-              <h2 className="text-3xl font-bold">Full Stack Developer</h2>
+              <Terminal />
             </div>
           </div>
-        </div>
-        <div className="h-screen bg-zinc-800">
-          <h1 className="text-5xl font-bold">Screen 2</h1>
         </div>
       </main>
     </>
