@@ -3,19 +3,24 @@ import React, { useState } from "react";
 type Language = {
     name: string;
     years: number;
-    img?: string;
     colour: string;
     hover: string;
 };
 
-const experience: Array<Language> = [
-    { name: "Java", years: 4, colour: "#dc2626", hover: "#f87171" },
-    { name: "JavaScript", years: 4, colour: "#fbbf24", hover: "#fcd34d" },
-    { name: "React", years: 3, colour: "#14b8a6", hover: "#2dd4bf" },
-    { name: "SQL", years: 3, colour: "#0284c7", hover: "#38bdf8" },
-    { name: "TypeScript", years: 0.5, colour: "#2563eb", hover: "#60a5fa" },
-    { name: "PHP", years: 2, colour: "#6d28d9", hover: "#8b5cf6" },
+const experience: Language[] = [
+    { name: "SQL", years: 3, colour: "#336791", hover: "#5c85a7" },
+    { name: "Java", years: 4, colour: "#FF9725", hover: "#ffac51" },
+    { name: "JavaScript", years: 4, colour: "#F0DB4F", hover: "#f5e684" },
+    { name: "React", years: 3, colour: "#00D7FE", hover: "#4de3f7" },
+    { name: "TypeScript", years: 0.5, colour: "#3178C6", hover: "#518fd4" },
+    { name: "PHP", years: 2, colour: "#4F5B93", hover: "#6471ac" },
 ];
+
+experience.sort((a, b) => b.years - a.years);
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const largest = experience[0].years;
+
 
 const StackChart: React.FC = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -29,31 +34,52 @@ const StackChart: React.FC = () => {
     };
 
     return (
-        <div className="w-full">
-            {experience.map((language, i) => (
-                <div
-                    key={i}
-                    className="flex h-12"
-                    onMouseEnter={() => handleRowMouseEnter(i)}
-                    onMouseLeave={handleRowMouseLeave}
-                >
-                    <div className="w-20 text-right pr-1 my-auto">{language.name}</div>
-                    <div className="h-full w-1 bg-zinc-700" />
-                    <div className="flex flex-auto transition-all">
-                        <div
-                            style={{
-                                width: `${language.years / 5 * 100}%`,
-                                backgroundColor: hoveredIndex === i ? language.hover : language.colour,
-                            }}
-                            className="h-1 my-auto duration-200"
+        <div className="w-full relative">
+
+            <div className="relative z-10">
+                {experience.map((language, i) => (
+                    <div
+                        key={i}
+                        className="flex h-12"
+                        onMouseEnter={() => handleRowMouseEnter(i)}
+                        onMouseLeave={handleRowMouseLeave}
+                    >
+                        <div className="w-28 text-right pr-1 my-auto text-xl font-bold">{language.name}</div>
+                        <img
+                            src={`logos/${language.name}.png`}
+                            className="my-auto mx-2 w-10 h-10 transition-all z-10"
                         />
-                        <img src={language.img || "/logos/java.png"} className="w-10 h-10 transition-all" />
+                        <div className="h-full w-1 bg-zinc-700" />
+                        <div className="flex flex-auto transition-all relative">
+                            <div className="flex duration-200" style={{
+                                width: `${(language.years / largest) * 100}%`
+                            }}>
+
+                                <div
+                                    style={{
+                                        backgroundColor: hoveredIndex === i ? language.hover : language.colour,
+                                    }}
+                                    className="h-3 w-full my-auto duration-200 z-10"
+                                />
+                            </div>
+                            {                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                // @ts-ignore
+                            }
+                            {[...Array<number>(largest)].map((_, j) => (
+                                <div
+                                    key={j}
+                                    className="absolute top-0 bottom-0 bg-zinc-400 w-0.5 h-full z-0"
+                                    style={{
+                                        left: `calc(${(100 / largest) * (j + 1)}% - 0.5px)`,
+                                    }}
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
         </div>
     );
 };
 
 export default StackChart;
-
