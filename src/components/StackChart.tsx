@@ -35,7 +35,11 @@ const StackChart: React.FC = () => {
 
     return (
         <div className="w-full relative">
-
+            <div className="w-full flex flex-auto font-bold text-center h-8 mt-2 mb-8">
+                <div className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 border-solid border-0 border-r border-l border-zinc-600 w-1/3"><div className="m-auto">Language</div></div>
+                <div className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 w-1/3"><div className="m-auto">Framework</div></div>
+                <div className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 border-solid border-0 border-r border-l border-zinc-600 w-1/3"><div className="m-auto">Tools</div></div>
+            </div>
             <div className="relative z-10">
                 {experience.map((language, i) => (
                     <div
