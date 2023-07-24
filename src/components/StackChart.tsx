@@ -6,15 +6,16 @@ type Language = {
     years: number;
     colour: string;
     hover: string;
+    img: string;
 };
 
 const experience: Language[] = [
-    { name: "SQL", years: 3, colour: "#336791", hover: "#5c85a7" },
-    { name: "Java", years: 4, colour: "#FF9725", hover: "#ffac51" },
-    { name: "JavaScript", years: 4, colour: "#F0DB4F", hover: "#f5e684" },
-    { name: "React", years: 3, colour: "#00D7FE", hover: "#4de3f7" },
-    { name: "TypeScript", years: 0.5, colour: "#3178C6", hover: "#518fd4" },
-    { name: "PHP", years: 2, colour: "#4F5B93", hover: "#6471ac" },
+    { name: "SQL", years: 3, colour: "#336791", hover: "#5c85a7", img: "sql.png" },
+    { name: "Java", years: 4, colour: "#FF9725", hover: "#ffac51", img: "java.png" },
+    { name: "JavaScript", years: 4, colour: "#F0DB4F", hover: "#f5e684", img: "js.png" },
+    { name: "React", years: 3, colour: "#00D7FE", hover: "#4de3f7", img: "react.png" },
+    { name: "TypeScript", years: 0.5, colour: "#3178C6", hover: "#518fd4", img: "ts.png" },
+    { name: "PHP", years: 2, colour: "#4F5B93", hover: "#6471ac", img: "php.png" },
 ];
 
 experience.sort((a, b) => b.years - a.years);
@@ -56,13 +57,12 @@ const StackChart: React.FC = () => {
                         onMouseLeave={handleRowMouseLeave}
                     >
                         <div className="w-28 text-right pr-1 my-auto text-xl font-bold">{language.name}</div>
-                        <Image
-                            unoptimized={true}
+                        <img
                             width={40}
                             height={40}
                             alt={`${language.name} Logo`}
-                            src={`/logos/${language.name}.png`}
-                            className="my-auto mx-2 transition-all z-10"
+                            src={`/logos/${language.img}`}
+                            className="my-auto mx-2 h-10 w-10 transition-all z-10"
                         />
                         <div className="h-full w-1 bg-zinc-700" />
                         <div className="flex flex-auto transition-all relative">
