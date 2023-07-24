@@ -61,7 +61,7 @@ const StackChart: React.FC = () => {
                             width={40}
                             height={40}
                             alt={`${language.name} Logo`}
-                            src={`/logos/${language.img}`}
+                            src={`/static/logos/${language.img}`}
                             className="my-auto mx-2 h-10 w-10 transition-all z-10"
                         />
                         <div className="h-full w-1 bg-zinc-700" />
