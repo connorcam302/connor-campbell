@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 type Language = {
     name: string;
@@ -57,7 +57,7 @@ const StackChart: React.FC = () => {
                         onMouseLeave={handleRowMouseLeave}
                     >
                         <div className="w-28 text-right pr-1 my-auto text-xl font-bold">{language.name}</div>
-                        <img
+                        <Image
                             width={40}
                             height={40}
                             alt={`${language.name} Logo`}
