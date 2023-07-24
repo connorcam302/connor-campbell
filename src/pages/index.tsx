@@ -38,16 +38,18 @@ export default function Home() {
                             <Terminal setContinueButton={setContinueButton} />
                         </div>
                         <div className="h-9">
-                            <div className={`flex flex-col items-center md:m-auto ${continueButton ? "animate-fade-in" : "hidden"} text-xl font-bold`}>
-                                <div>Continue</div>
-                                <div>
-                                    <AiOutlineArrowDown />
+                            <a href="#experience">
+                                <div className={`flex flex-col items-center md:m-auto ${continueButton ? "animate-fade-in" : "hidden"} text-xl font-bold`}>
+                                    <div>Continue</div>
+                                    <div>
+                                        <AiOutlineArrowDown />
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div className="aspect-[960/200] w-full bg-no-repeat bg-top bg-cover" style={{ backgroundImage: "url('/waves.svg')" }}>
+                <div id="experience" className="aspect-[960/200] w-full bg-no-repeat bg-top bg-cover" style={{ backgroundImage: "url('/waves.svg')" }}>
                     <div className="flex h-screen w-screen text-zinc-700">
                         <div className="flex flex-col m-auto">
                             <div className="md:h-20 h-12 w-screen md:w-96" />
