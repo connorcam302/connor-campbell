@@ -48,7 +48,7 @@ const StackChart: React.FC = () => {
                     <div className="m-auto">Tools</div>
                 </div>
             </div>
-            <div className="relative z-10">
+            <div className="relative z-10 pr-1">
                 {experience.map((language, i) => (
                     <div
                         key={i}
@@ -93,6 +93,20 @@ const StackChart: React.FC = () => {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="flex w-full">
+                <div className="h-10 w-40 mx-2" />
+                <div className="flex flex-auto">
+                    {[...Array<number>(largest)].map((_, j) => (
+                        <div
+                            key={j}
+                            className="pl-2 w-0.5 h-5 flex-auto text-right font-bold text-zinc-500"
+                            style={{
+                                left: `calc(${(100 / largest) * (j + 1)}%)`,
+                            }}
+                        >{j + 1}</div>
+                    ))}
+                </div>
             </div>
         </div>
     );
