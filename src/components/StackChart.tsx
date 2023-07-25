@@ -58,7 +58,18 @@ interface ComponentProps {
 }
 
 const StackChartSkeleton: React.FC<ComponentProps> = ({ experience }) => {
-    const largest = Math.ceil(experience[0].years);
+    if (experience.length > 0) {
+        const largest: number | undefined = experience[0]?.years; // 'largest' can be undefined
+
+        if (largest !== undefined) {
+            const roundedLargest: number = Math.ceil(largest);
+            // Use 'roundedLargest' in your logic or return it as needed.
+        } else {
+            // Handle the case when 'years' is undefined in the 'experience[0]'
+            // For example:
+            console.log("The 'years' property is not defined in experience[0].");
+        }
+    }
 
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
