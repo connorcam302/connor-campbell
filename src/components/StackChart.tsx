@@ -39,7 +39,7 @@ const framework: Experience[] = [
 
 const tools: Experience[] = [
     { name: "VS Code", years: getYearsDifference(new Date("2019-02-25"), new Date()), colour: "#43ACF2", hover: "#69bdf5", img: "vscode.png" },
-    { name: "Docker", years: getYearsDifference(new Date("2022-09-25"), new Date()), colour: "#066da5", hover: "#388ab7", img: "docker.png" },
+    { name: "Docker", years: getYearsDifference(new Date("2022-06-25"), new Date()), colour: "#066da5", hover: "#388ab7", img: "docker.png" },
     { name: "NeoVim", years: getYearsDifference(new Date("2022-10-05"), new Date()), colour: "#5b973b", hover: "#7cac62", img: "neovim.png" },
     { name: "Git", years: getYearsDifference(new Date("2021-02-05"), new Date()), colour: "#f05033", hover: "#f3735c", img: "git.png" },
     { name: "AWS", years: getYearsDifference(new Date("2022-01-05"), new Date()), colour: "#223040", hover: "#384553", img: "aws.png" },
