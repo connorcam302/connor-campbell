@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react"
 
-type Language = {
+type Experience = {
     name: string;
     years: number;
     colour: string;
@@ -9,22 +9,57 @@ type Language = {
     img: string;
 };
 
-const experience: Language[] = [
-    { name: "SQL", years: 3, colour: "#336791", hover: "#5c85a7", img: "sql.png" },
-    { name: "Java", years: 4, colour: "#FF9725", hover: "#ffac51", img: "java.png" },
-    { name: "JavaScript", years: 4, colour: "#F0DB4F", hover: "#f5e684", img: "js.png" },
-    { name: "React", years: 3, colour: "#00D7FE", hover: "#4de3f7", img: "react.png" },
-    { name: "TypeScript", years: 0.5, colour: "#3178C6", hover: "#518fd4", img: "ts.png" },
-    { name: "PHP", years: 2, colour: "#4F5B93", hover: "#6471ac", img: "php.png" },
+function getYearsDifference(targetDate: Date, tillDate: Date): number {
+    const currentDate: Date = tillDate
+    const millisecondsPerYear: number = 1000 * 60 * 60 * 24 * 365.25; // Considering leap years
+
+    const timeDifference: number = currentDate.getTime() - targetDate.getTime();
+    const yearsDifference: number = timeDifference / millisecondsPerYear;
+
+    return parseFloat(yearsDifference.toFixed(2));
+}
+
+
+const languages: Experience[] = [
+    { name: "SQL", years: getYearsDifference(new Date("2020-01-25"), new Date()), colour: "#336791", hover: "#5c85a7", img: "sql.png" },
+    { name: "Java", years: getYearsDifference(new Date("2019-09-05"), new Date()), colour: "#FF9725", hover: "#ffac51", img: "java.png" },
+    { name: "JavaScript", years: getYearsDifference(new Date("2019-09-05"), new Date()), colour: "#F0DB4F", hover: "#f5e684", img: "js.png" },
+    { name: "TypeScript", years: getYearsDifference(new Date("2023-02-05"), new Date()), colour: "#3178C6", hover: "#518fd4", img: "ts.png" },
+    { name: "PHP", years: getYearsDifference(new Date("2019-09-05"), new Date("2021-06-06")), colour: "#4F5B93", hover: "#6471ac", img: "php.png" },
+    { name: "HTML", years: getYearsDifference(new Date("2018-09-05"), new Date()), colour: "#4F5B93", hover: "#6471ac", img: "html.png" },
+    { name: "CSS", years: getYearsDifference(new Date("2018-09-05"), new Date("2022-06-06")), colour: "#4F5B93", hover: "#6471ac", img: "css.png" },
 ];
 
-experience.sort((a, b) => b.years - a.years);
+const framework: Experience[] = [
+    { name: "Tailwind", years: getYearsDifference(new Date("2022-09-25"), new Date()), colour: "#336791", hover: "#5c85a7", img: "sql.png" },
+    { name: "Next.js", years: getYearsDifference(new Date("2022-09-25"), new Date()), colour: "#FF9725", hover: "#ffac51", img: "java.png" },
+    { name: "React", years: getYearsDifference(new Date("2020-09-05"), new Date()), colour: "#00D7FE", hover: "#4de3f7", img: "react.png" },
+    { name: "Node.js", years: getYearsDifference(new Date("2021-04-05"), new Date()), colour: "#00D7FE", hover: "#4de3f7", img: "react.png" },
+];
+
+const tools: Experience[] = [
+    { name: "VS Code", years: getYearsDifference(new Date("2022-09-25"), new Date()), colour: "#336791", hover: "#5c85a7", img: "sql.png" },
+    { name: "Docker", years: getYearsDifference(new Date("2022-09-25"), new Date()), colour: "#FF9725", hover: "#ffac51", img: "java.png" },
+    { name: "Postman", years: getYearsDifference(new Date("2020-09-05"), new Date()), colour: "#00D7FE", hover: "#4de3f7", img: "react.png" },
+    { name: "NeoVim", years: getYearsDifference(new Date("2020-09-05"), new Date()), colour: "#00D7FE", hover: "#4de3f7", img: "react.png" },
+    { name: "Git", years: getYearsDifference(new Date("2021-09-05"), new Date()), colour: "#4F5B93", hover: "#6471ac", img: "php.png" },
+    { name: "AWS", years: getYearsDifference(new Date("2022-01-05"), new Date("2021-06-06")), colour: "#4F5B93", hover: "#6471ac", img: "php.png" },
+    { name: "Vercel", years: getYearsDifference(new Date("2029-25-05"), new Date("2021-06-06")), colour: "#4F5B93", hover: "#6471ac", img: "php.png" },
+];
+
+languages.sort((a, b) => b.years - a.years);
+framework.sort((a, b) => b.years - a.years);
+tools.sort((a, b) => b.years - a.years);
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-const largest = experience[0].years;
 
+interface ComponentProps {
+    experience: Experience[];
+}
 
-const StackChart: React.FC = () => {
+const StackChartSkeleton: React.FC<ComponentProps> = ({ experience }) => {
+    const largest = Math.ceil(experience[0].years);
+
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     const handleRowMouseEnter = (index: number) => {
@@ -37,17 +72,7 @@ const StackChart: React.FC = () => {
 
     return (
         <div className="w-full relative">
-            <div className="w-full flex flex-auto font-bold text-center h-8 mt-2 mb-8">
-                <div className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 border-solid border-0 border-r border-l border-zinc-600 w-1/3">
-                    <div className="m-auto">Language</div>
-                </div>
-                <div className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 w-1/3">
-                    <div className="m-auto">Framework</div>
-                </div>
-                <div className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 border-solid border-0 border-r border-l border-zinc-600 w-1/3">
-                    <div className="m-auto">Tools</div>
-                </div>
-            </div>
+
             <div className="relative z-10 pr-1">
                 {experience.map((language, i) => (
                     <div
@@ -111,5 +136,27 @@ const StackChart: React.FC = () => {
         </div>
     );
 };
+
+
+
+const StackChart: React.FC = () => {
+    const [chart, setChart] = useState(languages)
+
+    return (
+        <div>
+            <div className="w-full flex flex-auto font-bold text-center h-12 mt-2 mb-8">
+                <div className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 border-solid border-0 border-r border-l border-zinc-600 w-1/3">
+                    <div className="m-auto">Languages</div>
+                </div>
+                <div className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 w-1/3">
+                    <div className="m-auto">Frameworks & More</div>
+                </div>
+                <div className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 border-solid border-0 border-r border-l border-zinc-600 w-1/3">
+                    <div className="m-auto">Tools</div>
+                </div>
+            </div>
+            <StackChartSkeleton experience={chart} />
+        </div>)
+}
 
 export default StackChart;
