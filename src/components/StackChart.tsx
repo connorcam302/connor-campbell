@@ -58,18 +58,7 @@ interface ComponentProps {
 }
 
 const StackChartSkeleton: React.FC<ComponentProps> = ({ experience }) => {
-    if (experience.length > 0) {
-        const largest: number | undefined = experience[0]?.years; // 'largest' can be undefined
-
-        if (largest !== undefined) {
-            const roundedLargest: number = Math.ceil(largest);
-            // Use 'roundedLargest' in your logic or return it as needed.
-        } else {
-            // Handle the case when 'years' is undefined in the 'experience[0]'
-            // For example:
-            console.log("The 'years' property is not defined in experience[0].");
-        }
-    }
+    const largest = Math.ceil(experience[0]?.years || 0);
 
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -92,7 +81,6 @@ const StackChartSkeleton: React.FC<ComponentProps> = ({ experience }) => {
                         onMouseEnter={() => handleRowMouseEnter(i)}
                         onMouseLeave={handleRowMouseLeave}
                     >
-                        <div className="w-28 text-right pr-1 my-auto text-xl font-bold">{language.name}</div>
                         <Image
                             width={40}
                             height={40}
@@ -131,7 +119,7 @@ const StackChartSkeleton: React.FC<ComponentProps> = ({ experience }) => {
                 ))}
             </div>
             <div className="flex w-full">
-                <div className="h-10 w-40 mx-2" />
+                <div className="h-10 w-12 mx-2" />
                 <div className="flex flex-auto">
                     {[...Array<number>(largest)].map((_, j) => (
                         <div
