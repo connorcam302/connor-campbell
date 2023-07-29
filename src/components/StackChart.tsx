@@ -38,9 +38,9 @@ const framework: Experience[] = [
 ];
 
 const tools: Experience[] = [
-    { name: "VS Code", years: getYearsDifference(new Date("2019-02-25"), new Date()), colour: "#43ACF2", hover: "#69bdf5", img: "vscode.png" },
+    { name: "Visual Studio Code", years: getYearsDifference(new Date("2019-02-25"), new Date()), colour: "#43ACF2", hover: "#69bdf5", img: "vscode.png" },
     { name: "Docker", years: getYearsDifference(new Date("2022-06-25"), new Date()), colour: "#066da5", hover: "#388ab7", img: "docker.png" },
-    { name: "NeoVim", years: getYearsDifference(new Date("2022-10-05"), new Date()), colour: "#5b973b", hover: "#7cac62", img: "neovim.png" },
+    { name: "Neovim", years: getYearsDifference(new Date("2022-10-05"), new Date()), colour: "#5b973b", hover: "#7cac62", img: "neovim.png" },
     { name: "Git", years: getYearsDifference(new Date("2021-02-05"), new Date()), colour: "#f05033", hover: "#f3735c", img: "git.png" },
     { name: "AWS", years: getYearsDifference(new Date("2022-01-05"), new Date()), colour: "#223040", hover: "#384553", img: "aws.png" },
     { name: "Vercel", years: getYearsDifference(new Date("2023-03-05"), new Date()), colour: "#000000", hover: "#333333", img: "vercel.png" },
@@ -71,49 +71,50 @@ const StackChartSkeleton: React.FC<ComponentProps> = ({ experience }) => {
 
     return (
         <div className="w-full relative">
-
             <div className="relative z-10 pr-1">
                 {experience.map((language, i) => (
-                    <div
-                        key={i}
-                        className="flex h-14"
-                        onMouseEnter={() => handleRowMouseEnter(i)}
-                        onMouseLeave={handleRowMouseLeave}
-                    >
-                        <Image
-                            width={48}
-                            height={48}
-                            alt={`${language.name} Logo`}
-                            src={`/static/logos/${language.img}`}
-                            className="my-auto mx-2 h-12 w-12 transition-all z-10"
-                        />
-                        <div className="h-full w-1 bg-zinc-700" />
-                        <div className="flex flex-auto transition-all relative">
-                            <div className="flex duration-200" style={{
-                                width: `${(language.years / largest) * 100}%`
-                            }}>
+                    <div key={i} className="group">
+                        <div
+                            className="flex h-14"
+                            onMouseEnter={() => handleRowMouseEnter(i)}
+                            onMouseLeave={handleRowMouseLeave}
+                        >
+                            <Image
+                                width={48}
+                                height={48}
+                                alt={`${language.name} Logo`}
+                                src={`/static/logos/${language.img}`}
+                                className="my-auto mx-2 h-12 w-12 transition-all z-10"
+                            />
+                            <div className="h-full w-1 bg-zinc-700" />
+                            <div className="flex flex-auto transition-all relative">
+                                <div className="flex duration-200" style={{
+                                    width: `${(language.years / largest) * 100}%`
+                                }}>
 
-                                <div
-                                    style={{
-                                        backgroundColor: hoveredIndex === i ? language.hover : language.colour,
-                                    }}
-                                    className="h-3 w-full my-auto duration-200 z-10"
-                                />
+                                    <div
+                                        style={{
+                                            backgroundColor: hoveredIndex === i ? language.hover : language.colour,
+                                        }}
+                                        className="h-3 w-full my-auto duration-200 z-10"
+                                    />
+                                </div>
+                                {
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    // @ts-ignore
+                                }
+                                {[...Array<number>(largest)].map((_, j) => (
+                                    <div
+                                        key={j}
+                                        className="absolute top-0 bottom-0 bg-zinc-400 w-0.5 h-full z-0"
+                                        style={{
+                                            left: `calc(${(100 / largest) * (j + 1)}% - 0.5px)`,
+                                        }}
+                                    />
+                                ))}
                             </div>
-                            {
-                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                // @ts-ignore
-                            }
-                            {[...Array<number>(largest)].map((_, j) => (
-                                <div
-                                    key={j}
-                                    className="absolute top-0 bottom-0 bg-zinc-400 w-0.5 h-full z-0"
-                                    style={{
-                                        left: `calc(${(100 / largest) * (j + 1)}% - 0.5px)`,
-                                    }}
-                                />
-                            ))}
                         </div>
+                        <div className="pointer-events-none absolute left-1/2 z-20 w-max rounded bg-gray-900 px-2 py-1 text-sm font-medium text-gray-50 opacity-0 shadow transition-opacity group-hover:opacity-100">{language.name}</div>
                     </div>
                 ))}
             </div>
