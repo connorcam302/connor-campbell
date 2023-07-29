@@ -16,7 +16,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className="text-zinc-200 bg-zinc-800">
-                <div className="flex w-full h-[85vh]">
+                <div className="flex w-full">
                     <div className="flex flex-col m-auto bg-zinc-800" >
                         <div className="m-6 flex shrink  items-center gap-5">
                             <div className="">
@@ -49,7 +49,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div id="experience" className="aspect-[960/200] w-full bg-no-repeat bg-top bg-cover" style={{ backgroundImage: "url('/waves.svg')" }}>
+                <div id="experience" className="aspect-[960/200] w-full bg-no-repeat bg-top bg-cover p-full" style={{ backgroundImage: "url('/waves.svg')" }}>
                     <div className="flex h-screen w-screen text-zinc-700">
                         <div className="flex flex-col m-auto">
                             <div className="md:h-20 h-12 w-screen md:w-96" />
