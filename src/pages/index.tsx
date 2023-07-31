@@ -49,10 +49,10 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div id="experience" className="aspect-[960/200] w-full bg-no-repeat bg-top bg-cover p-full" style={{ backgroundImage: "url('/waves.svg')" }}>
+                <div id="experience" className="aspect-[960/200] w-full bg-no-repeat bg-top bg-cover" style={{ backgroundImage: "url('/waves.svg')" }}>
+                    <div className="md:h-40 h-32 w-screen md:w-96" />
                     <div className="flex h-screen w-screen text-zinc-700">
                         <div className="flex flex-col m-auto">
-                            <div className="md:h-20 h-12 w-screen md:w-96" />
                             <div className="m-6 flex-col items-center">
                                 <div className="text-4xl text-zinc-700 font-bold m-4 text-center">Developer Experience</div>
                                 <StackChart />
