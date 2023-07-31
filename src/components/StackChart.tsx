@@ -146,14 +146,14 @@ const StackChart: React.FC = () => {
 
     return (
         <div>
-            <div className="w-full flex flex-auto font-bold text-center h-12 mt-2 mb-8">
-                <div onClick={() => setChart(languages)} className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 border-solid border-0 border-r border-l border-zinc-600 w-1/3">
+            <div className="w-full flex flex-auto font-bold text-center mt-2 mb-8">
+                <div onClick={() => setChart(languages)} className="flex flex-auto p-1 cursor-pointer hover:bg-zinc-400 duration-300 border-solid border-0 border-r border-l border-zinc-600 w-1/3">
                     <div className="m-auto">Languages</div>
                 </div>
-                <div onClick={() => setChart(framework)} className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 w-1/3">
+                <div onClick={() => setChart(framework)} className="flex flex-auto p-1 cursor-pointer hover:bg-zinc-400 duration-300 w-1/3">
                     <div className="m-auto">Frameworks & More</div>
                 </div>
-                <div onClick={() => setChart(tools)} className="flex flex-auto cursor-pointer hover:bg-zinc-400 duration-300 border-solid border-0 border-r border-l border-zinc-600 w-1/3">
+                <div onClick={() => setChart(tools)} className="flex flex-auto p-1 cursor-pointer hover:bg-zinc-400 duration-300 border-solid border-0 border-r border-l border-zinc-600 w-1/3">
                     <div className="m-auto">Tools</div>
                 </div>
             </div>

@@ -53,8 +53,9 @@ export default function Home() {
                     <div className="md:h-40 h-32 w-screen md:w-96" />
                     <div className="flex h-screen w-screen text-zinc-700">
                         <div className="flex flex-col m-auto">
-                            <div className="m-6 flex-col items-center">
+                            <div className="m-6 flex-col w-96 items-center">
                                 <div className="text-4xl text-zinc-700 font-bold m-4 text-center">Developer Experience</div>
+                                <div className="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dignissim, massa eu aliquet elementum, diam felis congue neque, nec fringilla tortor metus sed ipsum. Donec eget mauris mi. Quisque et dapibus ex. Donec porta sodales velit. Donec auctor condimentum egestas. Etiam finibus orci leo, at convallis est dignissim vel. Quisque scelerisque, ante vitae imperdiet tempus, est erat rhoncus lacus, ut faucibus urna velit ac leo.</div>
                                 <StackChart />
                             </div>
                         </div>
